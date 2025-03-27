@@ -2,11 +2,11 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { convertDate, convertTime } from "../../utils";
 import LazyImage from "../Common/LazyImage";
 import Skeleton from "../Loading/Skeleton";
 import { useDataLayerValue } from "../../Context/DataLayer";
 import Modal from "../Common/Modal";
+import { format } from "date-fns";
 
 export default function Data({ data = [] }) {
   const [query, setQuery] = useState("");
@@ -185,18 +185,17 @@ function BodyFooter({
             to={`/track/${track.id}`}>
             {track.name}
           </NavLink>
-          <div>
+          <p>
             {track.artists.slice(0, 3).map((artist) => (
               <span
-                style={{ paddingRight: "8px" }}
                 className="span_link"
                 onClick={() => handleArtistsNavigate(artist.id)}
                 key={artist.id}
                 title={artist.type}>
-                {`${artist.name},`}
+                {artist.name?.split(" ").join("-")}
               </span>
             ))}
-          </div>
+          </p>
         </div>
       </div>
       <div
@@ -207,10 +206,10 @@ function BodyFooter({
         <span className="span_link">{track?.album?.name}</span>
       </div>
       <div className="col3" style={{ width: "100px" }}>
-        {convertDate(added_at)}
+        {format(new Date(added_at), "MMM dd, yyyy")}
       </div>
       <div className="col4" style={{ width: "50px" }}>
-        {convertTime(track?.duration_ms)}
+        {format(new Date(track?.duration_ms), "HH:mm")}
       </div>
     </div>
   );

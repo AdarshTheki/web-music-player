@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { convertTime, convertDate } from "../../utils";
 import { NavLink } from "react-router-dom";
 import picture from "../../assets/songs.png";
+import { format } from "date-fns";
 
 export default function BodyHeader({
   album,
@@ -54,7 +54,7 @@ export default function BodyHeader({
             )}
             {album?.album_release_date && (
               <span>
-                {convertDate(album?.album_release_date || "2023-02-29")}
+                {format(new Date(album?.album_release_date), "MMM dd, yyyy")}
               </span>
             )}
             {owner && (
@@ -68,7 +68,9 @@ export default function BodyHeader({
               </p>
             )}
             {popularity && <p>{popularity} K</p>}
-            {duration_ms && <p>{convertTime(duration_ms)} Hours</p>}
+            {duration_ms && (
+              <p>{format(new Date(duration_ms), "HH:mm")} Hours</p>
+            )}
             {length && <p>{length} Songs</p>}
           </div>
         </div>

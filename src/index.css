@@ -21,7 +21,7 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  background-color: var(--black-bg);
+  background-color: var(--black);
   color: var(--white-200);
 }
 body::-webkit-scrollbar {
@@ -172,11 +172,22 @@ body::-webkit-scrollbar {
 
 .sidebar__container {
   width: 100%;
+  display: grid;
+  background: var(--black);
+  gap: 5px;
+  padding: 10px 5px;
 }
-.sidebar__container .sidebar__item {
-  margin: 2px;
+
+@media (max-width: 30em) {
+  .sidebar__container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sidebar__container > .sidebar__item {
+  background: var(--black-bg);
   border: 1px solid transparent;
-  padding: 5px;
+  padding: 5px 10px;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -364,12 +375,16 @@ button {
   border-radius: 5px;
   border: 1px solid transparent;
   cursor: pointer;
+  background: var(--black-bg);
+  margin-bottom: 5px;
 }
 
 .bodyFooter .span_link {
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 300;
   color: #aaa;
   display: inline-block;
+  padding-right: 5px;
 }
 .bodyFooter .span_link:hover {
   color: #fff;
@@ -391,8 +406,8 @@ button {
   object-fit: contain;
 }
 .bodyFooter__name {
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
   color: #fff;
   text-decoration: none;
   cursor: pointer;

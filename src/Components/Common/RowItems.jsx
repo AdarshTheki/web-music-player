@@ -18,13 +18,19 @@ export default function RowItems({
   return (
     <NavLink to={`/${type}/${id}`} className="rowItems">
       <div className="rowItems__img">
-        <img src={images[0]?.url} alt={name} />
+        <img src={images[0]?.url} alt={name} height={140} />
         <p>{followers.total.toLocaleString("en-us", Number)}</p>
         <FaPlayCircle />
       </div>
       <div className="rowItems__detail">
         <p>{name?.substring(0, 20)}</p>
-        {genres.length ? genres?.map((i) => <span key={i}>{i}</span>) : null}
+        <span>
+          {genres.length
+            ? genres?.map((i) => i).join(", ")
+            : ["hindi", "english", "pop", "bollywood", "desi", "mix"]
+                .map((i) => i)
+                .join(", ")}
+        </span>
       </div>
     </NavLink>
   );

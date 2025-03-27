@@ -56,6 +56,8 @@ const Header = ({ spotify }) => {
     Navigate(`/${type}/${id}`);
   }
 
+  console.log("user", user);
+
   return (
     <div className="header-container">
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -94,13 +96,17 @@ const Header = ({ spotify }) => {
         </div>
       </div>
       {/* User Profile Details */}
-      <div className="header__right">
+      <div title="profile" className="header__right">
         <img
           src={user?.images[0]?.url}
           alt="user_profile"
           width={user?.images[0]?.width}
           height={user?.images[0]?.height}
         />
+        <div>
+          <h5>{user?.display_name}</h5>
+          <p>View Profile</p>
+        </div>
       </div>
     </div>
   );
