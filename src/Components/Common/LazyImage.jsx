@@ -1,23 +1,24 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
-import lazy from '../../assets/songs.png';
+import React, { useEffect, useState } from "react";
+import lazy from "../../assets/songs.png";
 
-export default function LazyImage({ src, alt = 'lazyImage' }) {
-    const [imgSrc, setImgSrc] = useState(lazy || src);
+export default function LazyImage({ src, alt = "lazyImage" }) {
+  const [imgSrc, setImgSrc] = useState(lazy || src);
 
-    const customClass = lazy && imgSrc === lazy ? 'loading__image' : 'loaded__image';
+  const customClass =
+    lazy && imgSrc === lazy ? "loading__image" : "loaded__image";
 
-    useEffect(() => {
-        const newImage = new Image();
-        newImage.src = src;
-        newImage.onload = () => {
-            setImgSrc(src);
-        };
+  useEffect(() => {
+    const newImage = new Image();
+    newImage.src = src;
+    newImage.onload = () => {
+      setImgSrc(src);
+    };
 
-        return () => {
-            newImage.onload = null;
-        };
-    }, [src]);
+    return () => {
+      newImage.onload = null;
+    };
+  }, [src]);
 
-    return <img src={imgSrc} alt={alt} loading='lazy' className={customClass} />;
+  return <img src={imgSrc} alt={alt} loading="lazy" className={customClass} />;
 }
